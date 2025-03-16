@@ -1,23 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const FeatureCard = ({ icon, title, description, onClick }) => {
+const FeatureCard = ({ 
+  icon, 
+  title, 
+  description, 
+  link = '#',
+  linkText = 'Learn more',
+  className = '',
+  ...props 
+}) => {
   return (
     <motion.div
-      whileHover={{ y: -10, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
+      whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl cursor-pointer transition-all duration-300"
-      onClick={onClick}
+      className={`bg-white border border-gray-100 p-6 rounded-xl transition-all duration-300 ${className}`}
+      {...props}
     >
-      <div className="flex flex-col items-center text-center">
-        <div className="bg-blue-50 p-3 rounded-lg mb-4">
-          {icon}
-        </div>
-        <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+      <div className="mb-4">
+        {icon}
       </div>
+      <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
+      <p className="text-gray-600 mb-4">{description}</p>
+      {linkText && (
+        <a 
+          href={link} 
+          className="inline-flex items-center text-black font-medium hover:underline"
+        >
+          {linkText}
+          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      )}
     </motion.div>
   );
 };

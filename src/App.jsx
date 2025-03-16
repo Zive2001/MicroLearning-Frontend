@@ -7,11 +7,12 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
-        {/* Add additional routes as your application grows */}
-        <Route path="/lectures" element={<div>Lectures Page (Coming Soon)</div>} />
-        <Route path="/tutorials" element={<div>Tutorials Page (Coming Soon)</div>} />
-        <Route path="/labs" element={<div>Labs Page (Coming Soon)</div>} />
-        <Route path="/dashboard" element={<div>Dashboard Page (Coming Soon)</div>} />
+        {/* Additional routes */}
+        <Route path="/features" element={<div>Features Page (Coming Soon)</div>} />
+        <Route path="/pricing" element={<div>Pricing Page (Coming Soon)</div>} />
+        <Route path="/resources" element={<div>Resources Page (Coming Soon)</div>} />
+        <Route path="/login" element={<div>Login Page (Coming Soon)</div>} />
+        <Route path="/signup" element={<div>Signup Page (Coming Soon)</div>} />
       </Routes>
     </Router>
   );

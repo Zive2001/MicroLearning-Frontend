@@ -2,82 +2,96 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
+  // Current year
+  const year = new Date().getFullYear();
+  
+  // Footer columns data
+  const footerColumns = [
+    {
+      title: "Product",
+      links: ["Features", "Pricing", "Templates", "For Teams", "Enterprise", "Security"]
+    },
+    {
+      title: "Resources",
+      links: ["Blog", "Help Center", "Guides", "API Documentation", "Community"]
+    },
+    {
+      title: "Company",
+      links: ["About Us", "Careers", "Contact", "Privacy", "Terms of Service"]
+    }
+  ];
+  
+  // Social links
+  const socialLinks = [
+    { name: "Twitter", icon: "twitter" },
+    { name: "LinkedIn", icon: "linkedin" },
+    { name: "YouTube", icon: "youtube" },
+    { name: "GitHub", icon: "github" }
+  ];
+  
   return (
-    <footer className="w-full bg-gray-900 text-white py-12 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+    <footer className="bg-white border-t border-gray-200 pt-16 pb-8">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+          {/* Logo and company info */}
+          <div className="col-span-2">
             <div className="flex items-center mb-4">
-              <div className="h-10 w-10 rounded-lg bg-blue-600 flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-xl">M</span>
+              <div className="w-8 h-8 bg-black rounded-md flex items-center justify-center mr-2">
+                <span className="text-white font-bold text-lg">M</span>
               </div>
-              <h2 className="text-2xl font-bold">MicroLearn</h2>
+              <span className="font-bold text-xl">MicroLearn</span>
             </div>
-            <p className="text-gray-400">
+            <p className="text-gray-600 mb-4 max-w-xs">
               The modern microlearning platform designed to help you master new skills through bite-sized lessons.
             </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h3 className="text-lg font-bold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h3 className="text-lg font-bold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h3 className="text-lg font-bold mb-4">Stay Updated</h3>
-            <p className="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates.</p>
-            <div className="flex">
-              <input 
-                type="email" 
-                placeholder="Your email" 
-                className="px-4 py-2 rounded-l-lg w-full focus:outline-none text-gray-800" 
-              />
-              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg transition-colors">
-                Subscribe
-              </button>
+            
+            {/* Language selector */}
+            <div className="flex items-center space-x-2 mt-8">
+              <div className="w-5 h-5 bg-gray-200 rounded-full"></div>
+              <select className="bg-transparent text-sm text-gray-600 focus:outline-none cursor-pointer">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+              </select>
             </div>
-          </motion.div>
+          </div>
+          
+          {/* Footer link columns */}
+          {footerColumns.map((column, index) => (
+            <div key={index} className="flex flex-col">
+              <h3 className="font-medium text-gray-900 mb-4">{column.title}</h3>
+              <ul className="space-y-2">
+                {column.links.map((link, i) => (
+                  <li key={i}>
+                    <a href="#" className="text-gray-600 hover:text-black transition-colors duration-200">{link}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="border-t border-gray-800 mt-12 pt-8 text-center"
-        >
-          <p className="text-gray-500">© {new Date().getFullYear()} MicroLearn. All rights reserved.</p>
-        </motion.div>
+        
+        {/* Bottom footer section */}
+        <div className="mt-16 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+          <div className="text-sm text-gray-500 mb-4 md:mb-0">
+            © {year} MicroLearn, Inc. All rights reserved.
+          </div>
+          
+          {/* Social links */}
+          <div className="flex space-x-6">
+            {socialLinks.map((social, index) => (
+              <a 
+                key={index} 
+                href="#" 
+                className="text-gray-400 hover:text-gray-800 transition-colors duration-200"
+                aria-label={social.name}
+              >
+                <div className="w-5 h-5 bg-gray-300 rounded-sm"></div>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   );
