@@ -1,33 +1,44 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const NavigationCardsSection = () => {
+  const navigate = useNavigate();
+  
   const navCards = [
     {
       title: "Lectures",
       icon: "/ni-file-user.svg",
       description: "Access all video lectures",
-      color: "from-blue-500 to-indigo-600"
+      color: "from-blue-500 to-indigo-600",
+      path: "/lectures"
     },
     {
       title: "Tutorials",
       icon: "/ni-pen-line.svg",
       description: "Step-by-step guided learning",
-      color: "from-green-500 to-teal-600"
+      color: "from-green-500 to-teal-600",
+      path: "/tutorials"
     },
     {
       title: "Labs",
       icon: "/ni-code-slash-square.svg",
       description: "Hands-on practice environments",
-      color: "from-purple-500 to-pink-600"
+      color: "from-purple-500 to-pink-600",
+      path: "/labs"
     },
     {
       title: "Dashboard",
       icon: "/ni-square-poll-vertical.svg",
       description: "Track your learning progress",
-      color: "from-orange-500 to-red-600"
+      color: "from-orange-500 to-red-600",
+      path: "/dashboard"
     }
   ];
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
 
   return (
     <section className="w-full py-24 bg-gray-50">
@@ -65,6 +76,7 @@ const NavigationCardsSection = () => {
                 transition: { duration: 0.2 }
               }}
               className="cursor-pointer"
+              onClick={() => handleNavigation(card.path)}
             >
               <div className={`bg-white shadow-lg hover:shadow-xl rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300`}>
                 {/* Card header - Placeholder for image */}
@@ -116,6 +128,10 @@ const NavigationCardsSection = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="w-full py-3 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium text-gray-800 transition-colors duration-200 flex items-center justify-center"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent the parent onClick from firing
+                        handleNavigation(card.path);
+                      }}
                     >
                       <span>Explore</span>
                       <img src="/ni-chevron-right-circle.svg" alt="Arrow icon" className="w-4 h-4 ml-2" />
